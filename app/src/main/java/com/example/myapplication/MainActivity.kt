@@ -52,6 +52,9 @@ fun Ejercicio2() {
             label = { Text("Nombre") }
         )
 
+        Spacer(modifier = Modifier.height(16.dp))
+
+
         Button(onClick = {
             lista.add(text)
             text = ""
@@ -83,6 +86,8 @@ fun Ejercicio2() {
             }
 
         }
+
+        Spacer(modifier = Modifier.height(16.dp))
 
         Column(
             modifier = Modifier
