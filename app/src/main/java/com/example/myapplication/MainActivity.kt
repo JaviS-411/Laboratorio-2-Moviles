@@ -15,6 +15,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -34,11 +35,11 @@ class MainActivity : ComponentActivity() {
 fun Ejercicio2() {
 
     var text by remember { mutableStateOf("") }
-    var lista = remember { mutableStateListOf<String>("") }
+    var lista = remember { mutableStateListOf<String>() }
 
     Column(
         modifier = Modifier
-            .padding(16.dp)
+            .padding(36.dp)
             .fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
 
@@ -63,13 +64,16 @@ fun Ejercicio2() {
 
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,
-            modifier = Modifier.width(16.dp)
+            modifier = Modifier.fillMaxWidth()
 
         ) {
 
-            Text("Listado de nombres \n y posicion de la lista")
+            Text(
 
+                text = "Listado de nombres \n y posicion de la lista",
+                fontSize = 18.sp
 
+            )
             Button(onClick = {
                 lista.clear()
                 text = ""
@@ -79,6 +83,34 @@ fun Ejercicio2() {
             }
 
         }
+
+        Column(
+            modifier = Modifier
+                .height(200.dp)
+                .padding(10.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center,
+        ) {
+            LazyColumn {
+                itemsIndexed(lista.toList()) { index, item ->
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(10.dp),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Text(
+                            text = item
+                        )
+                        Text(
+                            text = (index + 1).toString()
+                        )
+                    }
+                }
+            }
+        }
+
+
 
 
     }
